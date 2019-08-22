@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+
+    <title>Home</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+</head>
+<body>
+<h3>Hallo page Home</h3>
+<p></p>
+<div class="container">
+    <p></p>
+
+
+
+
+        <form th:action="${index}" method="get">
+            <label>Mot Clé:</label>
+            <input type="text" name="motcle" th:value="${motcle}">
+            <button class="btn btn-primary">Chercher</button>
+        </form>
+
+
+
+<table class="table">
+    <thead>
+
+    <tr>
+        <th>ID</th><th>Client</th><th>ABRE</th><th>nom</th>
+
+    </tr>
+
+    </thead>
+    <tbody>
+
+    <tr th:each="p:${listprojet}">
+
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.nom}"></td>
+        <td th:text="${p.desig}"></td>
+        <td th:text="${p.client}"></td>
+        <td><a th:href="@{delete(id=${p.id},page=${pageCaurante},size=${size},motcle=${motcle})}">delete</a></td>
+    </tr>
+
+
+    </tbody>
+
+
+</table>
+
+    <div>
+        <ul class="nav nav-pills">
+
+            <li th:class="${pageCaurante}==${status.index}?'active':''" th:each="pa,status:${pages}">
+                <a th:href="@{index(page=${status.index},size=${size},motcle=${motcle})}" th:text="${status.index}"></a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+</body>
+</html>

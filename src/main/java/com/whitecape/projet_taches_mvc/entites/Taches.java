@@ -3,11 +3,12 @@ package com.whitecape.projet_taches_mvc.entites;
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
 public class Taches implements Serializable {
 @Id
-@GeneratedValue(strategy =GenerationType.TABLE)
+@GeneratedValue(strategy =GenerationType.AUTO)
     private Long id;
+     private String nom;
 
     @ManyToOne(
             fetch = FetchType.LAZY)
@@ -15,6 +16,14 @@ public class Taches implements Serializable {
 
     public Projet getProjet() {
         return projet;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public void setProjet(Projet projet) {
@@ -35,7 +44,8 @@ public class Taches implements Serializable {
 
     }
 
-    public Taches(Projet projet) {
+    public Taches(String nom, Projet projet) {
+        this.nom = nom;
         this.projet = projet;
     }
 }
