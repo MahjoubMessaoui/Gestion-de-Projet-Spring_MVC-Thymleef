@@ -14,6 +14,21 @@
 <h1>List des taches</h1>
 
 <div class="container">
+    <form th:action="${index}">
+<label>Mot Cle:</label>
+        <input type="text" name="motcle" th:value="${motcle}"/>
+        <button class="btn btn-primary">chercher</button>
+
+
+
+
+    </form>
+
+
+
+</div>
+<p></p>
+<div class="container">
 
 <table class="table">
 
@@ -42,7 +57,20 @@
 </table>
 
 
+<div>
+    <ul class="nav nav-pills" >
 
+        <li th:class="${pageCaurante}==${status.index}?'active':''"th:each="ta,status:${pages}" >
+
+            <a th:href="@{index(page=${status.index},size=${size})}" th:text="${status.index}"></a>
+
+
+
+
+    </ul>
+
+
+</div>
 
 
 
